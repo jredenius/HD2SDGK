@@ -16,3 +16,4 @@ Instructions:
    - The profile will be overwritten.
    - Your Stream Deck applicaiton will restart.
    - The Kit buttons will now show your selected Stratagems and include the keybind combo.
+9) Close the Steam Overlay.
