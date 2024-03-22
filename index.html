@@ -121,6 +121,24 @@
                 background-color: gold;
                 border: 1px solid gold;
             }
+                .strat_item:hover > .strat_item_title, .strat_cat:hover > .strat_item_title {
+                    display: unset;
+                }
+        .strat_cat:hover > .strat_item_title {
+            top: 18%;
+        }
+        .strat_item_title {
+            display: none;
+            position: absolute;
+            background-color: gold;
+            color: black;
+            border: 1px solid gold;
+            border-bottom: 2px solid gold;
+            white-space: nowrap;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         .itemButton {
             content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=')
         }
@@ -180,6 +198,7 @@
                     catImage.attr("src", "data:image/png;base64," + cat.image);
                     catImage.attr("title", cat.name);
                     $(stratSet).append(catImage);
+                    $(stratSet).append("<span class='strat_item_title'>" + cat.name + "</span>");
 
 
                     var itemSet = $("<ul></ul>").addClass("strat_items").css("display", "none");
@@ -189,6 +208,7 @@
                         itemImage.attr("src", "data:image/png;base64," + item.image);
                         itemImage.attr("title", item.name);
                         $(stratItem).append(itemImage);
+                        $(stratItem).append("<span class='strat_item_title'>" + item.name +"</span>");
                         $(itemSet).append(stratItem);
                     });
                     $(stratSet).append(itemSet);
@@ -268,8 +288,6 @@
                     var _src = "#";
                     if (_kitImage != null) {
                         _class = "";
-                        //var btn = $(".itemButton[title='" + kit + "']");
-                        //btn.removeClass("itemButton");
                         _src = "data:image/png;base64," + _kitImage;
                     }
                     kitContainer.append('<span class="glass kit" onclick="displayStratMenu(this)">' + kit + '<img src="' + _src + '" class="' + _class + '" title="' + kit + '" /></span>');
