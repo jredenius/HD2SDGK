@@ -198,12 +198,12 @@ namespace HD2SDGK
                         {
                             continue;
                         }
-                        else if (_manifest.Name == "HD2SDGK")
+                        else if (_manifest.Name == appConfig.profileName)
                         {
                             SDButtonProfile.name = sub.Name;
                             SDButtonProfile.location = sub.FullName;
                             SDButtonProfile.pages = _manifest.Pages.Pages.ToObject<string[]>();
-                            log("> HD2SDGK profile identified.");
+                            log("> " + appConfig.profileName + " profile identified.");
                             break;
                         }
                     }
