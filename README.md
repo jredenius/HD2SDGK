@@ -29,6 +29,7 @@ Tips:
 1) The web interface works the same in-game or out. It's just easier to use Steam Overlay so you don't have to tab out of the game.
 2) If you open the Steam Overlay when you are readying-up for the mission, you can see your selected strats through the background.
      - However, you can use the web interface to update the Stream Deck at any time, including in-mission.
+3) Use additional Kit buttons when there are effects that give you free Stratagems.
 
 =======================================================================
 
