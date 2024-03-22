@@ -41,7 +41,7 @@ Notes:
      - The program will not interfere with your other buttons.
      - Edit HD2SDGK.config
         - Change profileName to match your profile.
-        - profileButtons list must match your button names.
+        - profileButtons list must match your profile button names (e.g. Kit1, Kit2, etc.).
 3) In HD2SDGK.config, selectorRows/Colums affects the webpage layout.
 
 =======================================================================
