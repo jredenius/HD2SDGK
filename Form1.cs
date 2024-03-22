@@ -327,11 +327,11 @@ namespace HD2SDGK
                         StratConfig_update = JsonConvert.DeserializeObject<StratCats>(json);
                         if (StratConfig_update.lastUpdated > StratConfig.lastUpdated)
                         {
-                            lbStratConfigUpdate.Text = "Update Available";
+                            lbStratUpdateLink.Text = "Update Available";
                         }
                         else
                         {
-                            lbStratConfigUpdate.Text = "Current";
+                            lbStratUpdateLink.Text = "Current";
                         }
                     }
                     log("Stratagem update check complete.");
@@ -339,7 +339,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratConfigUpdate.Text = "Failed";
+                lbStratUpdateLink.Text = "Failed";
                 log("Stratagem update check failed.");
             }
         }
@@ -528,13 +528,13 @@ namespace HD2SDGK
                             StratConfig = StratConfig_update;
                             LoadImageHashs();
                             SaveStratConfig();
-                            lbStratConfigUpdate.Text = "Current";
+                            lbStratUpdateLink.Text = "Current";
                             log("Stratagem update complete.");
                         }
                     }
                     else
                     {
-                        lbStratConfigUpdate.Text = "Current";
+                        lbStratUpdateLink.Text = "Current";
                     }
                 }
                 else
@@ -545,7 +545,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratConfigUpdate.Text = "Failed";
+                lbStratUpdateLink.Text = "Failed";
                 log("Stratagem update check failed.");
             }
         }
