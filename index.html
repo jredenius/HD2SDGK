@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Access-Control-Allow-Credentials" content="true">
+    <meta http-equiv="Access-Control-Allow-Headers" content="Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale">
+    <meta http-equiv="Access-Control-Allow-Methods" content="GET, POST, OPTIONS">
+
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color:black;
+        }
+        .deck_center {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #303030;
+        }
+
+        .deck {
+            background-color: #303030;
+            padding: 28px;
+            /*max-width: 550px;*/
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        .kits {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+            .kits > span {
+            }
+
+        .kit {
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            margin-right: 15px;
+        }
+            .kit:hover {
+                box-shadow: inset 0 3px 3px 0px #fff,inset 0 9px 10px 0px #fff;
+            }
+
+            .kit img {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+        .deck_seperator {
+            width: 0px !important;
+            border-left: 2px solid black;
+            margin-right: 10px;
+        }
+        .deck_row_seperator {
+            display:block;
+            clear:both;
+        }
+        .strat_menu {
+        }
+            .strat_menu img {
+                width: 60px;
+                cursor: pointer;
+            }
+        .strat_cats {
+            list-style-type: none;
+            margin: 0;
+            padding: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            /* height: 228px; */
+            /* width: 110px; */
+            background-color: rgb(0 0 0);
+            border: 1px solid black;
+            flex-direction: row;
+            align-content: flex-start;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .strat_cat {
+            margin: 0 12px 0 0;
+            padding: 0;
+            border: 1px solid black;
+        }
+            .strat_cat:hover {
+                background-color: gold;
+                border: 1px solid gold;
+            }
+        .strat_items {
+            list-style-type: none;
+            margin: 0;
+            padding: 6px;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #151515;
+        }
+        .strat_item {
+            margin: 5px 12px 0 0;
+            padding: 0;
+            border: 1px solid black;
+        }
+            .strat_item:hover {
+                background-color: gold;
+                border: 1px solid gold;
+            }
+        .itemButton {
+            content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=')
+        }
+        .glass {
+            position: relative;
+            display: inline-block;
+            background-color: #b80707;
+            background-image: linear-gradient(#b80707, #b95656);
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            font-family: sans-serif;
+            font-weight: 600;
+            text-shadow: 2px 2px 5px BLACK;
+            line-height: 22px;
+            cursor: pointer;
+        }
+            .glass.yellow {
+                background-color: #FFEB3B;
+                background-image: linear-gradient(#FFEB3B, #FFC107);
+                width: 65px;
+                color: black;
+                text-align: center;
+            }
+            .glass:after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                width: calc(100% - 4px);
+                height: 75%;
+                background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+                cursor: pointer;
+            }
+            .glass:hover {
+                background: linear-gradient(#073,#0fa);
+            }
+            .glass.selected {
+                background: linear-gradient(#073,#0fa);
+            }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        var lastBtn = null;
+        var lastItems = null;
+        $(document).ready(function () {
+            refreshStratConfig();
+            loadInitalButtons();
+        });
+        function refreshStratConfig() {
+            $.getJSON("StratConfig.json", function (data) {
+                window.HD2Strats = data;
+                var menu = $("<ul></ul>").addClass("strat_cats");
+                window.HD2Strats.categories.forEach(cat => {
+                    var stratSet = $("<li></li>").addClass("strat_cat").attr("onclick","displayStratSubMenu(this)");
+                    var catImage = $("<img />");
+                    catImage.attr("src", "data:image/png;base64," + cat.image);
+                    catImage.attr("title", cat.name);
+                    $(stratSet).append(catImage);
+
+
+                    var itemSet = $("<ul></ul>").addClass("strat_items").css("display", "none");
+                    cat.strats.forEach(item => {
+                        var stratItem = $("<li></li>").addClass("strat_item").attr("onclick", "selectStratItem(this)");
+                        var itemImage = $("<img />");
+                        itemImage.attr("src", "data:image/png;base64," + item.image);
+                        itemImage.attr("title", item.name);
+                        $(stratItem).append(itemImage);
+                        $(itemSet).append(stratItem);
+                    });
+                    $(stratSet).append(itemSet);
+
+                    $(menu).append(stratSet);
+                });
+                $(".strat_menu").append(menu);
+            }).fail(function () {
+                console.log("An error has occurred reading StratConfig.json.");
+            });
+        }
+        function displayStratMenu(btn) {
+            hideStratMenu();
+            if (lastBtn == btn) {
+                lastBtn = null;
+                return;
+            }
+            lastBtn = btn;
+            $(lastBtn).addClass("selected");
+            $(".strat_menu").css("display", "");
+        }
+        function hideStratMenu() {
+            if (lastBtn != null) $(lastBtn).removeClass("selected");
+            $(".strat_menu").css("display", "none");
+            hideLastItems();
+        }
+        function displayStratSubMenu(btn) {
+            hideLastItems();
+            lastItems = btn;
+            $(btn).children(".strat_items").css("display", "");
+        }
+        function hideLastItems() {
+            if (lastItems != null) $(lastItems).children(".strat_items").css("display", "none");
+        }
+        function selectStratItem(item) {
+            if (!lastBtn) return;
+            if (!lastItems) return;
+            hideStratMenu();
+            //$(lastBtn).children("img").attr("title",
+            //    $(item).children("img").attr("title")
+            //)
+            var _kit = $(lastBtn).children("img").attr("title");
+            var _strat = $(item).children("img").attr("title");
+            $(lastBtn).children("img").attr("src",
+                $(item).children("img").attr("src")
+            )
+            $(lastBtn).children("img").removeClass("itemButton");
+            lastBtn = null;
+            lastItems = null;
+            $.get(_kit, { strat: _strat });
+        }
+        function resetSD(btn) {
+            var _kit = $(btn).children("img").attr("title");
+            $.get(_kit, { });
+        }
+        function loadInitalButtons() {
+            var kitImages = { $kitImages };
+            $.getJSON("HD2SDGK.config", function (data) {
+                var _rowCount = 1;
+                var _columnCount = 1;
+                var kitContainer = $('<span>');
+                data.profileButtons.forEach(kit => {
+                    if (_columnCount > data.selectorColumns) {
+                        kitContainer.append('<span class="deck_row_seperator"></span>');
+                        _columnCount = 1;
+                        _rowCount++;
+                    }
+                    if (_rowCount > data.selectorRows) {
+                        $(".kits").append(kitContainer);
+                        $(".kits").append('<span class="deck_seperator"></span>');
+                        kitContainer = $('<span>');
+                        _columnCount = 1;
+                        _rowCount = 1;
+                    }
+                    var _kitImage = kitImages[kit];
+                    var _class = "itemButton";
+                    var _src = "#";
+                    if (_kitImage != null) {
+                        _class = "";
+                        //var btn = $(".itemButton[title='" + kit + "']");
+                        //btn.removeClass("itemButton");
+                        _src = "data:image/png;base64," + _kitImage;
+                    }
+                    kitContainer.append('<span class="glass kit" onclick="displayStratMenu(this)">' + kit + '<img src="' + _src + '" class="' + _class + '" title="' + kit + '" /></span>');
+                    _columnCount++;
+                });
+                $(".kits").append(kitContainer);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="deck_center">
+        <div class="deck">
+            <span class="kits">
+            </span>
+            <span class="">
+                <span class="deck_seperator"></span>
+                <span class="glass yellow" onclick="resetSD(this)">Update Stream Deck<img src="#" class="itemButton" title="ResetSD" /></span>
+            </span>
+        </div>
+    </div>
+    <div class="strat_menu" style="display:none;"></div>
+</body>
+</html>

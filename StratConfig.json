@@ -1,0 +1,351 @@
+﻿{
+    "categories": [
+        {
+            "name": "Support Weapons",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Machine Gun",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "up", "right" ]
+                },
+                {
+                    "name": "Anti-Materiel Rifle",
+                    "image": "",
+                    "code": [ "home", "down", "left", "right", "up", "down" ]
+                },
+                {
+                    "name": "Stalwart",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "up", "up", "left" ]
+                },
+                {
+                    "name": "Autocannon",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "up", "up", "right" ]
+                },
+                {
+                    "name": "Railgun",
+                    "image": "",
+                    "code": [ "home", "down", "right", "down", "up", "left", "right" ]
+                },
+                {
+                    "name": "Grenade Launcher",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "left", "down" ]
+                },
+                {
+                    "name": "Arc Thrower",
+                    "image": "",
+                    "code": [ "home", "down", "right", "down", "up", "left", "left" ]
+                },
+                {
+                    "name": "Flamethrower",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "down", "up" ]
+                },
+                {
+                    "name": "Laser Cannon",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "up", "left" ]
+                },
+                {
+                    "name": "Expendable Anti-Tank",
+                    "image": "",
+                    "code": [ "home", "down", "down", "left", "up", "right" ]
+                },
+                {
+                    "name": "Recoilless Rifle",
+                    "image": "",
+                    "code": [ "home", "down", "left", "right", "right", "left" ]
+                },
+                {
+                    "name": "SPEAR Launcher",
+                    "image": "",
+                    "code": [ "home", "down", "down", "up", "down", "down" ]
+                }
+            ]
+        },
+        {
+            "name": "Backpacks",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Supply Pack",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "up", "up", "down" ]
+                },
+                {
+                    "name": "Shield Generator Pack",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "right", "left", "right" ]
+                },
+                {
+                    "name": "Jump Pack",
+                    "image": "",
+                    "code": [ "home", "down", "up", "up", "down", "up" ]
+                },
+                {
+                    "name": "Guard Dog",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "up", "right", "down" ]
+                },
+                {
+                    "name": "Guard Dog Rover",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "up", "right", "right" ]
+                },
+                {
+                    "name": "Ballistic Shield Backpack",
+                    "image": "",
+                    "code": [ "home", "down", "left", "down", "down", "up", "left" ]
+                }
+            ]
+        },
+        {
+            "name": "Orbital Cannons",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Orbital Precision Strike",
+                    "image": "",
+                    "code": [ "home", "right", "right", "up" ]
+                },
+                {
+                    "name": "Orbital Gatling Barrage",
+                    "image": "",
+                    "code": [ "home", "right", "down", "left", "up", "up" ]
+                },
+                {
+                    "name": "Orbital Airburst Strike",
+                    "image": "",
+                    "code": [ "home", "right", "right", "right" ]
+                },
+                {
+                    "name": "120MM HE Barrage",
+                    "image": "",
+                    "code": [ "home", "right", "right", "down", "left", "right", "down" ]
+                },
+                {
+                    "name": "380MM HE Barrage",
+                    "image": "",
+                    "code": [ "home", "right", "down", "up", "up", "left", "down", "down" ]
+                },
+                {
+                    "name": "Orbital Walking Barrage",
+                    "image": "",
+                    "code": [ "home", "right", "down", "right", "down", "right", "down" ]
+                },
+                {
+                    "name": "Orbital Laser",
+                    "image": "",
+                    "code": [ "home", "right", "down", "up", "right", "down" ]
+                },
+                {
+                    "name": "Orbital Railcannon Strike",
+                    "image": "",
+                    "code": [ "home", "right", "up", "down", "down", "right" ]
+                },
+                {
+                    "name": "Orbital Gas Strike",
+                    "image": "",
+                    "code": [ "home", "right", "right", "down", "right" ]
+                },
+                {
+                    "name": "Orbital EMS Strike",
+                    "image": "",
+                    "code": [ "home", "right", "right", "left", "down" ]
+                },
+                {
+                    "name": "Orbital Smoke Strike",
+                    "image": "",
+                    "code": [ "home", "right", "right", "down", "up" ]
+                }
+            ]
+        },
+        {
+            "name": "Eagles",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Eagle Strafing Run",
+                    "image": "",
+                    "code": [ "home", "up", "right", "right" ]
+                },
+                {
+                    "name": "Eagle Airstrike",
+                    "image": "",
+                    "code": [ "home", "up", "right", "down", "right" ]
+                },
+                {
+                    "name": "Eagle Cluster Bomb",
+                    "image": "",
+                    "code": [ "home", "up", "right", "down", "down", "right" ]
+                },
+                {
+                    "name": "Eagle Napalm Airstrike",
+                    "image": "",
+                    "code": [ "home", "up", "right", "down", "up" ]
+                },
+                {
+                    "name": "Eagle Smoke Strike",
+                    "image": "",
+                    "code": [ "home", "up", "right", "up", "down" ]
+                },
+                {
+                    "name": "Eagle 110MM Rocket Pods",
+                    "image": "",
+                    "code": [ "home", "up", "right", "up", "left" ]
+                },
+                {
+                    "name": "Eagle 500KG Bomb",
+                    "image": "",
+                    "code": [ "home", "up", "right", "down", "down", "down" ]
+                }
+            ]
+        },
+        {
+            "name": "Defensive",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Machine Gun Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "right", "up" ]
+                },
+                {
+                    "name": "Gatling Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "left" ]
+                },
+                {
+                    "name": "Autocannon Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "up", "left", "up" ]
+                },
+                {
+                    "name": "Mortar Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "right", "down" ]
+                },
+                {
+                    "name": "EMS Mortar Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "down", "right" ]
+                },
+                {
+                    "name": "Rocket Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "right", "left" ]
+                },
+                {
+                    "name": "Anti-Personnel Minefield",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "right" ]
+                },
+                {
+                    "name": "Incendiary Mines",
+                    "image": "",
+                    "code": [ "home", "down", "left", "left", "down" ]
+                },
+                {
+                    "name": "Shield Generator Relay",
+                    "image": "",
+                    "code": [ "home", "down", "down", "left", "right", "left", "right" ]
+                },
+                {
+                    "name": "Tesla Tower",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "up", "left", "right" ]
+                },
+                {
+                    "name": "HMG Emplacement",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "right", "right", "left" ]
+                }
+            ]
+        },
+        {
+            "name": "Vehicles",
+            "image": "",
+            "strats": [
+                {
+                    "name": "Patriot Exosuit",
+                    "image": "",
+                    "code": [ "home", "left", "down", "right", "up", "left", "down", "down" ]
+                }
+            ]
+        },
+        {
+            "name": "General",
+            "image": "",
+            "strats": [
+                {
+                    "name": "blank",
+                    "image": "",
+                    "code": [ "home" ]
+                },
+                {
+                    "name": "Reinforcements",
+                    "image": "",
+                    "code": [ "home", "up", "down", "right", "left", "up" ]
+                },
+                {
+                    "name": "Resupply",
+                    "image": "",
+                    "code": [ "home", "down", "down", "up", "right" ]
+                },
+                {
+                    "name": "Eagle Rearm",
+                    "image": "",
+                    "code": [ "home", "up", "up", "left", "up", "right" ]
+                },
+                {
+                    "name": "Hellbomb",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "down", "up", "right", "down", "up" ]
+                },
+                {
+                    "name": "SEAF Artillery",
+                    "image": "",
+                    "code": [ "home", "right", "up", "up", "down" ]
+                },
+                {
+                    "name": "SOS Beacon",
+                    "image": "",
+                    "code": [ "home", "up", "down", "right", "up" ]
+                },
+                {
+                    "name": "SSSD Delivery",
+                    "image": "",
+                    "code": [ "home", "down", "down", "down", "up", "up" ]
+                },
+                {
+                    "name": "Upload Data",
+                    "image": "",
+                    "code": [ "home", "down", "down", "up", "up", "up" ]
+                },
+                {
+                    "name": "Seismic Probe",
+                    "image": "",
+                    "code": [ "home", "up", "up", "left", "right", "down", "down" ]
+                },
+                {
+                    "name": "Prospecting Drill",
+                    "image": "",
+                    "code": [ "home", "down", "down", "left", "right", "down", "down" ]
+                },
+                {
+                    "name": "Orbital Illumination Flare",
+                    "image": "",
+                    "code": [ "home", "right", "right", "left", "left" ]
+                },
+                {
+                    "name": "Super Earth Flag",
+                    "image": "",
+                    "code": [ "home", "down", "up", "down", "up" ]
+                }
+            ]
+        }
+    ]
+}

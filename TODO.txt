@@ -1,0 +1,8 @@
+﻿Auto update strat list from offical source
+listen for web interface changes
+change profile images
+SD sdk to set active profile, page 1
+
+listen for keybinds? or listen for endpoint
+execute key sequence
+SD return to page 1
