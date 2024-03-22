@@ -17,10 +17,12 @@ namespace HD2SDGK
         public string streamDeckExePath;
         public int selectorRows;
         public int selectorColumns;
+        public string stratConfigUpdateURL;
     }
     public class StratCats
     {
         public List<StratCat> categories;
+        public DateTime lastUpdated;
     }
     public class StratCat
     {

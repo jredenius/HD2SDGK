@@ -44,6 +44,8 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             Logtb = new TextBox();
+            lbStratConfigUpdate = new Label();
+            lbStratUpdateLink = new LinkLabel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -63,9 +65,9 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(12, 38);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(243, 158);
+            groupBox1.Size = new Size(243, 166);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Status";
@@ -182,9 +184,9 @@
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(Logtb);
-            groupBox2.Location = new Point(260, 12);
+            groupBox2.Location = new Point(260, 38);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(299, 158);
+            groupBox2.Size = new Size(299, 166);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Log";
@@ -197,14 +199,36 @@
             Logtb.Name = "Logtb";
             Logtb.ReadOnly = true;
             Logtb.ScrollBars = ScrollBars.Vertical;
-            Logtb.Size = new Size(293, 132);
+            Logtb.Size = new Size(293, 140);
             Logtb.TabIndex = 0;
+            // 
+            // lbStratConfigUpdate
+            // 
+            lbStratConfigUpdate.AutoSize = true;
+            lbStratConfigUpdate.Location = new Point(317, 15);
+            lbStratConfigUpdate.Name = "lbStratConfigUpdate";
+            lbStratConfigUpdate.Size = new Size(107, 20);
+            lbStratConfigUpdate.TabIndex = 2;
+            lbStratConfigUpdate.Text = "Stratagem List:";
+            // 
+            // lbStratUpdateLink
+            // 
+            lbStratUpdateLink.AutoSize = true;
+            lbStratUpdateLink.Location = new Point(430, 15);
+            lbStratUpdateLink.Name = "lbStratUpdateLink";
+            lbStratUpdateLink.Size = new Size(75, 20);
+            lbStratUpdateLink.TabIndex = 3;
+            lbStratUpdateLink.TabStop = true;
+            lbStratUpdateLink.Text = "Checking..";
+            lbStratUpdateLink.LinkClicked += lbStratUpdateLink_LinkClicked;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(571, 182);
+            ClientSize = new Size(571, 216);
+            Controls.Add(lbStratUpdateLink);
+            Controls.Add(lbStratConfigUpdate);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -220,6 +244,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -239,5 +264,7 @@
         private Label lbEvents;
         private Label lbSDinfo;
         private Label lbConfig;
+        private Label lbStratConfigUpdate;
+        private LinkLabel lbStratUpdateLink;
     }
 }

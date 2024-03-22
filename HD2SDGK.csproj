@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Octokit" Version="10.0.0" />
     <PackageReference Include="SelfishHttp" Version="0.3.0" />
   </ItemGroup>
 

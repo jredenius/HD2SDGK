@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using static System.Windows.Forms.Design.AxImporter;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -18,6 +19,7 @@ namespace HD2SDGK
         AppConfig appConfig;
         string _imageFolder = "StratImages";
         StratCats StratConfig;
+        StratCats StratConfig_update;
         SDButtonProfileDir SDButtonProfile = new SDButtonProfileDir();
         IEnumerable<StratItem> StratItems { get { return StratConfig.categories.SelectMany(x => x.strats); } }
         Server httpServer;
@@ -46,7 +48,7 @@ namespace HD2SDGK
             {
                 _error = true;
             }
-            if(_error)
+            if (_error)
             {
                 log("HD2SDGK.config not found.");
                 return;
@@ -114,8 +116,6 @@ namespace HD2SDGK
             {
 
             }
-
-
             try
             {
                 httpServer = new Server(appConfig.localHostPort);
@@ -125,7 +125,7 @@ namespace HD2SDGK
                 httpServer.OnGet("/HD2SDGK.config").NoCache().RespondWith(JsonConvert.SerializeObject(appConfig));
                 foreach (string kitName in appConfig.profileButtons)
                 {
-                    httpServer.OnGet("/"+ kitName).AddHandler(new Action<HttpListenerContext, Action>(KitAction));
+                    httpServer.OnGet("/" + kitName).AddHandler(new Action<HttpListenerContext, Action>(KitAction));
                 }
                 httpServer.OnGet("/ResetSD").AddHandler(new Action<HttpListenerContext, Action>(ResetSDAction));
                 lbEvents.Text = "Listening";
@@ -247,7 +247,7 @@ namespace HD2SDGK
                                 }
                                 catch (Exception)
                                 {
-                                    log("> Error identifying "+ kitName + ".");
+                                    log("> Error identifying " + kitName + ".");
                                 }
                             }
                         }
@@ -310,9 +310,38 @@ namespace HD2SDGK
             using (StreamReader r = new StreamReader("StratConfig.json"))
             {
                 ConfigStratJSONContent = r.ReadToEnd();
-                StratConfig = JsonConvert.DeserializeObject<StratCats>(ConfigStratJSONContent);
             }
+            StratConfig = JsonConvert.DeserializeObject<StratCats>(ConfigStratJSONContent);
+            UpdateStratConfig();
             log("Strat config imported.");
+        }
+        private void UpdateStratConfig()
+        {
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString(appConfig.stratConfigUpdateURL);
+                    if (json != null)
+                    {
+                        StratConfig_update = JsonConvert.DeserializeObject<StratCats>(json);
+                        if (StratConfig_update.lastUpdated > StratConfig.lastUpdated)
+                        {
+                            lbStratConfigUpdate.Text = "Update Available";
+                        }
+                        else
+                        {
+                            lbStratConfigUpdate.Text = "Current";
+                        }
+                    }
+                    log("Stratagem update check complete.");
+                }
+            }
+            catch (Exception)
+            {
+                lbStratConfigUpdate.Text = "Failed";
+                log("Stratagem update check failed.");
+            }
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -421,7 +450,7 @@ namespace HD2SDGK
             if (SDAppRunning)
             {
                 Process[] SDProcesses = Process.GetProcessesByName("StreamDeck");
-                if(SDProcesses.Length > 0 )
+                if (SDProcesses.Length > 0)
                 {
                     Process SDProcess = SDProcesses[0];
                     SDProcess.Kill(true);
@@ -438,7 +467,7 @@ namespace HD2SDGK
                     p.Start();
                     SDAppRunning = true;
                     log("> Process Restarted.");
-                } 
+                }
                 else
                 {
                     log("> Process not found.");
@@ -479,6 +508,68 @@ namespace HD2SDGK
             }
             return null;
         }
-
+        private void lbStratUpdateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                if (StratConfig == null || lbStratUpdateLink.Text == "Update Available")
+                {
+                    if (StratConfig == null || StratConfig_update.lastUpdated > StratConfig.lastUpdated)
+                    {
+                        DialogResult result = MessageBox.Show("New Stratagem update available. Overwrite existing key combo file?", "Stratagem Update"
+                            , MessageBoxButtons.YesNo
+                            , MessageBoxIcon.Question
+                            , MessageBoxDefaultButton.Button1
+                            , MessageBoxOptions.DefaultDesktopOnly);
+                        if (result == DialogResult.Yes)
+                        {
+                            DownloadStratImages();
+                            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update);
+                            StratConfig = StratConfig_update;
+                            LoadImageHashs();
+                            SaveStratConfig();
+                            lbStratConfigUpdate.Text = "Current";
+                            log("Stratagem update complete.");
+                        }
+                    }
+                    else
+                    {
+                        lbStratConfigUpdate.Text = "Current";
+                    }
+                }
+                else
+                {
+                    log("Checking for Stratagem update.");
+                    UpdateStratConfig();
+                }
+            }
+            catch (Exception)
+            {
+                lbStratConfigUpdate.Text = "Failed";
+                log("Stratagem update check failed.");
+            }
+        }
+        private async void DownloadStratImages()
+        {
+            log("Downloading new Strat images.");
+            var github = new Octokit.GitHubClient(new Octokit.ProductHeaderValue("HD2SDGK"));
+            Task<IReadOnlyList<Octokit.RepositoryContent>> dir = github.Repository.Content.GetAllContents(775749108, "StratImages");
+            await dir.ContinueWith(t =>
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    foreach (Octokit.RepositoryContent file in t.Result)
+                    {
+                        //Name,DownloadUrl
+                        string filePath = string.Format("{0}\\{1}", _imageFolder, file.Name);
+                        if (!new FileInfo(filePath).Exists)
+                        {
+                            wc.DownloadFile(file.DownloadUrl, filePath);
+                            log("> "+ file.Name + " added.");
+                        }
+                    }
+                }
+            });
+        }
     }
 }
