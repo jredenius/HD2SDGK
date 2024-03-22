@@ -1,7 +1,7 @@
 # HD2SDGK
 Helldivers 2 Stratagem selector for Stream Deck (Mini)
 
-Release: https://github.com/jredenius/HD2SDGK/releases/tag/v1.2
+Release: https://github.com/jredenius/HD2SDGK/releases
 
 The program will update your Stream Deck with your selected Stratagems using the included Stream Deck Mini profile.
 
