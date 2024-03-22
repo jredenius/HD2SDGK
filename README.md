@@ -17,3 +17,5 @@ Instructions:
    - Your Stream Deck applicaiton will restart.
    - The Kit buttons will now show your selected Stratagems and include the keybind combo (Takes about 3 seconds to update).
 9) Close the Steam Overlay.
+
+![image](https://github.com/jredenius/HD2SDGK/assets/22848915/8040c5eb-d337-42ec-8577-f17c9715f859)
