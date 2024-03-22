@@ -15,5 +15,5 @@ Instructions:
 8) Click the Update Stream Deck button
    - The profile will be overwritten.
    - Your Stream Deck applicaiton will restart.
-   - The Kit buttons will now show your selected Stratagems and include the keybind combo.
+   - The Kit buttons will now show your selected Stratagems and include the keybind combo (Takes about 3 seconds to update).
 9) Close the Steam Overlay.
