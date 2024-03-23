@@ -526,8 +526,8 @@ namespace HD2SDGK
                             DownloadStratImages();
                             ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update);
                             StratConfig = StratConfig_update;
+                            SaveStratConfig();
                             LoadImageHashs();
-                            //SaveStratConfig();
                             lbStratUpdateLink.Text = "Current";
                             log("Stratagem update complete.");
                         }
