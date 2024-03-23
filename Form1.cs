@@ -86,17 +86,17 @@ namespace HD2SDGK
                 lbStratimages.Text = "Error";
                 lbStratimages.ForeColor = Color.Red;
             }
-            //try
-            //{
-            //    SaveStratConfig();
-            lbConfig.Text = "Loaded";
-            lbConfig.ForeColor = Color.Green;
-            //}
-            //catch (Exception)
-            //{
-            //    lbConfig.Text = "Error";
-            //    lbConfig.ForeColor = Color.Red;
-            //}
+            try
+            {
+                SaveStratConfig();
+                lbConfig.Text = "Loaded";
+                lbConfig.ForeColor = Color.Green;
+            }
+            catch (Exception)
+            {
+                lbConfig.Text = "Error";
+                lbConfig.ForeColor = Color.Red;
+            }
             try
             {
                 LoadSDButtonImages();
