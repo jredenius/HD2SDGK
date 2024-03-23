@@ -339,7 +339,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratUpdateLink.Text = "Failed";
+                lbStratUpdateLink.Text = "Check Failed";
                 log("Stratagem update check failed.");
             }
         }
@@ -545,7 +545,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratUpdateLink.Text = "Failed";
+                lbStratUpdateLink.Text = "Check Failed";
                 log("Stratagem update check failed.");
             }
         }
