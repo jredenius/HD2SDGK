@@ -54,6 +54,8 @@ If you want to modify this yourself:
 4) Set the key combo using the Home + Direction keywords.
 
 # Screenshots
-![image](https://github.com/jredenius/HD2SDGK/assets/22848915/b3fbe1a0-d6e9-4747-9569-08308601b1b2)
+![image](https://github.com/jredenius/HD2SDGK/assets/22848915/9c7acc21-ef16-4f49-9919-d7cbacfc7236)
+
+![image](https://github.com/jredenius/HD2SDGK/assets/22848915/54737bef-36a7-4516-93de-4c9f9e168b56)
 
 ![image](https://github.com/jredenius/HD2SDGK/assets/22848915/8040c5eb-d337-42ec-8577-f17c9715f859)
