@@ -74,13 +74,13 @@
                 cursor: pointer;
             }
         .strat_cats {
+            position: absolute;
+            width: 100vw;
             list-style-type: none;
             margin: 0;
             padding: 6px;
             display: flex;
             flex-wrap: wrap;
-            /* height: 228px; */
-            /* width: 110px; */
             background-color: rgb(0 0 0);
             border: 1px solid black;
             flex-direction: row;
@@ -98,10 +98,11 @@
                 border: 1px solid gold;
             }
         .strat_items {
+            position: absolute;
+            width: 100vw;
             list-style-type: none;
             margin: 0;
             padding: 6px;
-            position: absolute;
             left: 0;
             width: 100%;
             display: flex;
@@ -125,7 +126,7 @@
                     display: unset;
                 }
         .strat_cat:hover > .strat_item_title {
-            top: 18%;
+            top: -25px;
         }
         .strat_item_title {
             display: none;
