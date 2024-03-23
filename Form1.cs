@@ -89,8 +89,8 @@ namespace HD2SDGK
             //try
             //{
             //    SaveStratConfig();
-            //    lbConfig.Text = "Updated";
-            //    lbConfig.ForeColor = Color.Green;
+            lbConfig.Text = "Loaded";
+            lbConfig.ForeColor = Color.Green;
             //}
             //catch (Exception)
             //{
