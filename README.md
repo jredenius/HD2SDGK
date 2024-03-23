@@ -15,12 +15,12 @@ Use the included Stream Deck Mini profile or modify your own.
 3) Run the HD2SDGK program.
 4) In game, open Steam Overlay and add a browser component.
 5) Navigate the browser to http://localhost:4567.
-   - Port is configurable in .config file.
+   - Port is configurable in HD2SDGK.config file.
 6) On the web interface, select your Stratagems to match the ones you choose in game.
 7) Click the Update Stream Deck button.
-   - The profile will be overwritten.
+   - The profile will be updated.
    - The Stream Deck applicaiton will restart.
-   - After about 3 seconds, the Kit buttons will now show your selected Stratagems and include the keybind combo.
+   - After 2-3 seconds, the Kit buttons will now show your selected Stratagems and include the keybind combo.
 8) Close the Steam Overlay. You can close the overlay immediately after clicking the Update button, you don't have to wait for the Deck to update.
 
 
