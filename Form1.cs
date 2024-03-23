@@ -35,8 +35,8 @@ namespace HD2SDGK
         private void Form1_Load(object sender, EventArgs e)
         {
             /*TODO
-             * Auto update strat list from offical source
-             * 
+             * Add config setting for keydown > keyup delay
+             * Add config setting for delay between hotkeys
              */
             bool _error = false;
             try
@@ -516,7 +516,7 @@ namespace HD2SDGK
                 {
                     if (StratConfig == null || StratConfig_update.lastUpdated > StratConfig.lastUpdated)
                     {
-                        DialogResult result = MessageBox.Show("New Stratagem update available. Overwrite existing key combo file?", "Stratagem Update"
+                        DialogResult result = MessageBox.Show("New Stratagem update available. Overwrite existing hotkey file?", "Stratagem Update"
                             , MessageBoxButtons.YesNo
                             , MessageBoxIcon.Question
                             , MessageBoxDefaultButton.Button1
