@@ -257,13 +257,13 @@ namespace HD2SDGK
         }
         private void SaveStratConfig()
         {
-            using (StreamWriter w = new StreamWriter("StratConfig.json"))
-            {
-                ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig);
-                w.Write(ConfigStratJSONContent);
-                w.Flush();
-                log("Strat config file updated.");
-            }
+            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig);
+            //using (StreamWriter w = new StreamWriter("StratConfig.json"))
+            //{
+            //    w.Write(ConfigStratJSONContent);
+            //    w.Flush();
+            //}
+            log("Strat config updated.");
         }
         private string GetImageBase64(string filePath)
         {
@@ -526,8 +526,8 @@ namespace HD2SDGK
                             DownloadStratImages();
                             ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update);
                             StratConfig = StratConfig_update;
-                            SaveStratConfig();
                             LoadImageHashs();
+                            SaveStratConfig();
                             lbStratUpdateLink.Text = "Current";
                             log("Stratagem update complete.");
                         }
