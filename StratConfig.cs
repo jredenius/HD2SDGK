@@ -21,8 +21,8 @@ namespace HD2SDGK
     }
     public class StratCats
     {
-        public List<StratCat> categories;
         public DateTime lastUpdated;
+        public List<StratCat> categories;
     }
     public class StratCat
     {

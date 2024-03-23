@@ -86,17 +86,17 @@ namespace HD2SDGK
                 lbStratimages.Text = "Error";
                 lbStratimages.ForeColor = Color.Red;
             }
-            try
-            {
-                SaveStratConfig();
-                lbConfig.Text = "Updated";
-                lbConfig.ForeColor = Color.Green;
-            }
-            catch (Exception)
-            {
-                lbConfig.Text = "Error";
-                lbConfig.ForeColor = Color.Red;
-            }
+            //try
+            //{
+            //    SaveStratConfig();
+            //    lbConfig.Text = "Updated";
+            //    lbConfig.ForeColor = Color.Green;
+            //}
+            //catch (Exception)
+            //{
+            //    lbConfig.Text = "Error";
+            //    lbConfig.ForeColor = Color.Red;
+            //}
             try
             {
                 LoadSDButtonImages();
@@ -295,7 +295,7 @@ namespace HD2SDGK
                     item.image = GetImageBase64(string.Concat(Directory.GetCurrentDirectory(), "\\", _imageFolder, "\\", item.name, ".png"));
                 }
             }
-            log("Strat images updated.");
+            log("Strat images loaded.");
         }
         private void LoadWebPageContent()
         {
@@ -527,7 +527,7 @@ namespace HD2SDGK
                             ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update);
                             StratConfig = StratConfig_update;
                             LoadImageHashs();
-                            SaveStratConfig();
+                            //SaveStratConfig();
                             lbStratUpdateLink.Text = "Current";
                             log("Stratagem update complete.");
                         }
@@ -551,7 +551,7 @@ namespace HD2SDGK
         }
         private async void DownloadStratImages()
         {
-            log("Downloading new Strat images.");
+            log("Checking for new Strat images.");
             var github = new Octokit.GitHubClient(new Octokit.ProductHeaderValue("HD2SDGK"));
             Task<IReadOnlyList<Octokit.RepositoryContent>> dir = github.Repository.Content.GetAllContents(775749108, "StratImages");
             await dir.ContinueWith(t =>
