@@ -3,7 +3,7 @@
 **Release:** https://github.com/jredenius/HD2SDGK/releases
 [![Github All Releases](https://img.shields.io/github/downloads/jredenius/HD2SDGK/total.svg)]()
 
-This app will update your Stream Deck with your selected Stratagems using a locally hosted web interface. 
+This app will update your Stream Deck with your selected Stratagems while in game through Steam Overlay. 
 Use the included Stream Deck Mini profile or modify your own.
 
 
