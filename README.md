@@ -20,7 +20,7 @@ Use the included Stream Deck Mini profile or modify your own.
 7) Click the Update Stream Deck button.
    - The profile will be updated.
    - The Stream Deck applicaiton will restart.
-   - After 2-3 seconds, the Kit buttons will now show your selected Stratagems and include the keybind combo.
+   - After 2-3 seconds, the Kit buttons will now show your selected Stratagems and include the hotkey combo.
 8) Close the Steam Overlay. You can close the overlay immediately after clicking the Update button, you don't have to wait for the Deck to update.
 
 
@@ -44,14 +44,14 @@ Use the included Stream Deck Mini profile or modify your own.
 3) In HD2SDGK.config, selectorRows/Colums affects the webpage layout.
 
 
-# Stratagem combos
-StratConfig.json contains the key combos. I'll try to keep this up-to-date as new Strats are release. The app automatically checks for updates. 
+# Stratagem Hotkeys
+StratConfig.json contains the hotkeys. I'll try to keep this up-to-date as new Stratagem Hotkeys are release. The app automatically checks for updates. 
 
 If you want to modify this yourself:
 1) Add a new item under "strats" in your prefered category.
 2) The name doesn't have to match the in-game strat name, but there must be an .png image that matches the name used in the config in the StratImages folder.
 3) Leave the "image" property set to an empty string. This is populated automatically when the program starts.
-4) Set the key combo using the Home + Direction keywords.
+4) Set the hotkeys using the Home + Direction keywords.
 
 # Screenshots
 ![image](https://github.com/jredenius/HD2SDGK/assets/22848915/9c7acc21-ef16-4f49-9919-d7cbacfc7236)
