@@ -259,11 +259,11 @@ namespace HD2SDGK
         private void SaveStratConfig()
         {
             ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig, Formatting.Indented);
-            //using (StreamWriter w = new StreamWriter("StratConfig.json"))
-            //{
-            //    w.Write(ConfigStratJSONContent);
-            //    w.Flush();
-            //}
+            using (StreamWriter w = new StreamWriter("StratConfig.json", false))
+            {
+                w.Write(ConfigStratJSONContent);
+                w.Flush();
+            }
             log("Strat config updated.");
         }
         private string GetImageBase64(string filePath)
