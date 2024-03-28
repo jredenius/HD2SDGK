@@ -325,8 +325,8 @@ namespace HD2SDGK
             {
                 using (WebClient wc = new WebClient())
                 {
-                    //TODO fix caching issue
-                    string json = wc.DownloadString(appConfig.stratConfigUpdateURL);
+                    Random random = new Random();
+                    string json = wc.DownloadString(appConfig.stratConfigUpdateURL + "?random=" + random.Next().ToString());
                     if (json != null)
                     {
                         StratConfig_update = JsonConvert.DeserializeObject<StratCats>(json);
