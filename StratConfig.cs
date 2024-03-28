@@ -27,6 +27,7 @@ namespace HD2SDGK
     public class StratCat
     {
         public string name;
+        [JsonIgnore]
         public string image;
         public List<StratItem> strats;
     }
@@ -34,6 +35,7 @@ namespace HD2SDGK
     public class StratItem
     {
         public string name;
+        [JsonIgnore]
         public string image;
         public string[] code;
     }
