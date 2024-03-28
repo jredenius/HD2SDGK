@@ -25,6 +25,7 @@ namespace HD2SDGK
         Server httpServer;
         bool httpServerIsStarted = false;
         public string ConfigWebPageContent { get; set; } = "";
+        public string ConfigWebPageContent_original { get; set; } = "";
         public string ConfigStratJSONContent { get; set; } = "";
         bool SDAppRunning = true;
         public Form1()
@@ -169,7 +170,7 @@ namespace HD2SDGK
                     imageKVP += "\",";
                 }
             }
-            ConfigWebPageContent = ConfigWebPageContent.Replace("$kitImages", imageKVP);
+            ConfigWebPageContent = ConfigWebPageContent_original.Replace("$kitImages", imageKVP);
         }
         private void log(string message)
         {
@@ -257,7 +258,7 @@ namespace HD2SDGK
         }
         private void SaveStratConfig()
         {
-            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig);
+            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig, Formatting.Indented);
             //using (StreamWriter w = new StreamWriter("StratConfig.json"))
             //{
             //    w.Write(ConfigStratJSONContent);
@@ -271,12 +272,14 @@ namespace HD2SDGK
             {
                 try
                 {
-                    Image img = Image.FromFile(filePath);
-                    img.Save(ms, img.RawFormat);
-                    byte[] imageBytes = ms.ToArray();
-                    string base64String = Convert.ToBase64String(imageBytes);
-                    img.Dispose();
-                    return base64String;
+                    using (Image img = Image.FromFile(filePath))
+                    {
+                        img.Save(ms, img.RawFormat);
+                        byte[] imageBytes = ms.ToArray();
+                        string base64String = Convert.ToBase64String(imageBytes);
+                        img.Dispose();
+                        return base64String;
+                    }
                 }
                 catch (Exception)
                 {
@@ -303,6 +306,7 @@ namespace HD2SDGK
             {
                 ConfigWebPageContent = r.ReadToEnd();
             }
+            ConfigWebPageContent_original = ConfigWebPageContent;
             log("Web interface updated.");
         }
         private void LoadStratConfig()
@@ -488,6 +492,7 @@ namespace HD2SDGK
         {
             SDButtonProfileButton button = SDButtonProfile.Kits[c.Request.Url.LocalPath.Remove(0, 1)];
             button.stratItem = SetSDAction(button.name, c.Request.QueryString["strat"], button.image, button.location);
+            UpdateWebContent();
         }
         private string GenerateStratImageFileName(string Name)
         {
@@ -524,7 +529,7 @@ namespace HD2SDGK
                         if (result == DialogResult.Yes)
                         {
                             DownloadStratImages();
-                            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update);
+                            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update, Formatting.Indented);
                             StratConfig = StratConfig_update;
                             LoadImageHashs();
                             SaveStratConfig();
