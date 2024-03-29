@@ -27,6 +27,7 @@ namespace HD2SDGK
         public string ConfigWebPageContent { get; set; } = "";
         public string ConfigWebPageContent_original { get; set; } = "";
         public string ConfigStratJSONContent { get; set; } = "";
+        public string ConfigStratJSONContent_original { get; set; } = "";
         bool SDAppRunning = true;
         public Form1()
         {
@@ -121,8 +122,14 @@ namespace HD2SDGK
             {
                 httpServer = new Server(appConfig.localHostPort);
                 httpServerIsStarted = true;
-                httpServer.OnGet("/").NoCache().RespondWith(ConfigWebPageContent);
-                httpServer.OnGet("/StratConfig.json").NoCache().RespondWith(ConfigStratJSONContent);
+                httpServer.OnGet("/").Respond((req, res) =>
+                {
+                    res.Body = ConfigWebPageContent;
+                });
+                httpServer.OnGet("/StratConfig.json").Respond((req, res) =>
+                {
+                    res.Body = ConfigStratJSONContent;
+                });
                 httpServer.OnGet("/HD2SDGK.config").NoCache().RespondWith(JsonConvert.SerializeObject(appConfig));
                 foreach (string kitName in appConfig.profileButtons)
                 {
@@ -261,7 +268,7 @@ namespace HD2SDGK
             ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig, Formatting.Indented);
             using (StreamWriter w = new StreamWriter("StratConfig.json", false))
             {
-                w.Write(ConfigStratJSONContent);
+                w.Write(ConfigStratJSONContent_original);
                 w.Flush();
             }
             log("Strat config updated.");
@@ -313,14 +320,42 @@ namespace HD2SDGK
         {
             using (StreamReader r = new StreamReader("StratConfig.json"))
             {
-                ConfigStratJSONContent = r.ReadToEnd();
+                ConfigStratJSONContent_original = r.ReadToEnd();
             }
+            ConfigStratJSONContent = ConfigStratJSONContent_original;
             StratConfig = JsonConvert.DeserializeObject<StratCats>(ConfigStratJSONContent);
-            UpdateStratConfig();
+            UpdateCheck();
             log("Strat config imported.");
         }
-        private void UpdateStratConfig()
+        private void UpdateCheck()
         {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://github.com/jredenius/HD2SDGK/releases/latest");
+                request.AllowAutoRedirect = false;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                string redirUrl = response.Headers["Location"];
+                response.Close();
+                if (!string.IsNullOrEmpty(redirUrl))
+                {
+                    redirUrl = redirUrl.Split("/").LastOrDefault();
+                }
+                if (!string.IsNullOrEmpty(redirUrl) && redirUrl != appConfig.version)
+                {
+                    lblNewVersion.Text = "Update Available";
+                }
+                else
+                {
+                    lblNewVersion.Text = appConfig.version;
+                }
+                log("Version check complete.");
+            }
+            catch (Exception)
+            {
+                lblNewVersion.Text = "Check Failed";
+                log("Version update check failed.");
+            }
+            //====================================================
             try
             {
                 using (WebClient wc = new WebClient())
@@ -530,7 +565,7 @@ namespace HD2SDGK
                         if (result == DialogResult.Yes)
                         {
                             DownloadStratImages();
-                            ConfigStratJSONContent = JsonConvert.SerializeObject(StratConfig_update, Formatting.Indented);
+                            ConfigStratJSONContent_original = JsonConvert.SerializeObject(StratConfig_update, Formatting.Indented);
                             StratConfig = StratConfig_update;
                             LoadImageHashs();
                             SaveStratConfig();
@@ -541,12 +576,17 @@ namespace HD2SDGK
                     else
                     {
                         lbStratUpdateLink.Text = "Current";
+                        DialogResult result = MessageBox.Show("Your Stratagem list is up-to-date.", "Stratagem Update"
+                            , MessageBoxButtons.OK
+                            , MessageBoxIcon.Information
+                            , MessageBoxDefaultButton.Button1
+                            , MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
                 else
                 {
                     log("Checking for Stratagem update.");
-                    UpdateStratConfig();
+                    UpdateCheck();
                 }
             }
             catch (Exception)
@@ -571,11 +611,32 @@ namespace HD2SDGK
                         if (!new FileInfo(filePath).Exists)
                         {
                             wc.DownloadFile(file.DownloadUrl, filePath);
-                            log("> "+ file.Name + " added.");
+                            log("> " + file.Name + " added.");
                         }
                     }
                 }
             });
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = Directory.GetCurrentDirectory(),
+                UseShellExecute = true,
+                Verb = "open"
+            });
+        }
+
+        private void lblNewVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://github.com/jredenius/HD2SDGK/releases/latest") { UseShellExecute = true });
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("http://localhost:" + appConfig.localHostPort.ToString()) { UseShellExecute = true });
+
         }
     }
 }

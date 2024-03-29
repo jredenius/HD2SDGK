@@ -10,6 +10,7 @@ namespace HD2SDGK
 {
     public class AppConfig
     {
+        public string version;
         public string profileName;
         public int localHostPort;
         public string[] profileButtons;
@@ -27,7 +28,6 @@ namespace HD2SDGK
     public class StratCat
     {
         public string name;
-        [JsonIgnore]
         public string image;
         public List<StratItem> strats;
     }
@@ -35,7 +35,6 @@ namespace HD2SDGK
     public class StratItem
     {
         public string name;
-        [JsonIgnore]
         public string image;
         public string[] code;
     }

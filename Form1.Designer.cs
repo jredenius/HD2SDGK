@@ -46,6 +46,10 @@
             Logtb = new TextBox();
             lbStratConfigUpdate = new Label();
             lbStratUpdateLink = new LinkLabel();
+            linkLabel1 = new LinkLabel();
+            lblNewVersion = new LinkLabel();
+            label7 = new Label();
+            linkLabel2 = new LinkLabel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -205,7 +209,7 @@
             // lbStratConfigUpdate
             // 
             lbStratConfigUpdate.AutoSize = true;
-            lbStratConfigUpdate.Location = new Point(317, 15);
+            lbStratConfigUpdate.Location = new Point(343, 23);
             lbStratConfigUpdate.Name = "lbStratConfigUpdate";
             lbStratConfigUpdate.Size = new Size(107, 20);
             lbStratConfigUpdate.TabIndex = 2;
@@ -214,7 +218,7 @@
             // lbStratUpdateLink
             // 
             lbStratUpdateLink.AutoSize = true;
-            lbStratUpdateLink.Location = new Point(430, 15);
+            lbStratUpdateLink.Location = new Point(445, 23);
             lbStratUpdateLink.Name = "lbStratUpdateLink";
             lbStratUpdateLink.Size = new Size(75, 20);
             lbStratUpdateLink.TabIndex = 3;
@@ -222,11 +226,57 @@
             lbStratUpdateLink.Text = "Checking..";
             lbStratUpdateLink.LinkClicked += lbStratUpdateLink_LinkClicked;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(18, 9);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(115, 20);
+            linkLabel1.TabIndex = 4;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Install Folder🔗";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // lblNewVersion
+            // 
+            lblNewVersion.AutoSize = true;
+            lblNewVersion.Location = new Point(445, 3);
+            lblNewVersion.Name = "lblNewVersion";
+            lblNewVersion.Size = new Size(75, 20);
+            lblNewVersion.TabIndex = 5;
+            lblNewVersion.TabStop = true;
+            lblNewVersion.Text = "Checking..";
+            lblNewVersion.LinkClicked += lblNewVersion_LinkClicked;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(390, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(60, 20);
+            label7.TabIndex = 6;
+            label7.Text = "Version:";
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(144, 9);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(126, 20);
+            linkLabel2.TabIndex = 7;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Web Interface 🔗";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(571, 216);
+            Controls.Add(linkLabel2);
+            Controls.Add(label7);
+            Controls.Add(lblNewVersion);
+            Controls.Add(linkLabel1);
             Controls.Add(lbStratUpdateLink);
             Controls.Add(lbStratConfigUpdate);
             Controls.Add(groupBox2);
@@ -266,5 +316,9 @@
         private Label lbConfig;
         private Label lbStratConfigUpdate;
         private LinkLabel lbStratUpdateLink;
+        private LinkLabel linkLabel1;
+        private LinkLabel lblNewVersion;
+        private Label label7;
+        private LinkLabel linkLabel2;
     }
 }
