@@ -42,6 +42,16 @@ Use the included Stream Deck Mini profile or modify your own.
         - Change profileName to match your profile.
         - profileButtons list must match your Stream Deck button names (e.g. Kit1, Kit2, etc.).
 3) In HD2SDGK.config, selectorRows/Colums affects the webpage layout.
+4) Interface Version display:
+      - Version number - Your app is up to date with the latest version.
+      - Update Available - Click the link to view and download the latest app release.
+      - Failed - Checking for the latest version failed.
+5) Interface Stratagem List display:
+      - Current - You have the latest copy of the stratagem hotkey config.
+      - Update Available - Click the link to download the latest version of the stratagem hotkey config and new icons.
+      - Failed - Checking for the latest list failed. Click to try again.
+6) Interface Install Folder link - Click to open the installation folder in File Explorer.
+7) Interface Web Interface link - Click to open the web interface in your default browser.
 
 
 # Stratagem Hotkeys
