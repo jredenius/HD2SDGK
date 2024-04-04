@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SelfishHttp;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -29,6 +30,8 @@ namespace HD2SDGK
         public string ConfigStratJSONContent { get; set; } = "";
         public string ConfigStratJSONContent_original { get; set; } = "";
         bool SDAppRunning = true;
+        public CheckStatus VersionStatus = CheckStatus.None;
+        public CheckStatus StratagemStatus = CheckStatus.None;
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +43,12 @@ namespace HD2SDGK
              * Add config setting for keydown > keyup delay
              * Add config setting for delay between hotkeys
              */
+            lblWebInterface.Image = Icons.CircleRed;
+            lblStratcombos.Image = Icons.CircleRed;
+            lblStratimages.Image = Icons.CircleRed;
+            lblConfig.Image = Icons.CircleRed;
+            lblSDinfo.Image = Icons.CircleRed;
+            lblEvents.Image = Icons.CircleRed;
             bool _error = false;
             try
             {
@@ -52,63 +61,57 @@ namespace HD2SDGK
             }
             if (_error)
             {
-                log("HD2SDGK.config not found.");
+                log("**HD2SDGK.config not found**");
                 return;
             }
             try
             {
                 LoadWebPageContent();
-                lbWebInterface.Text = "Loaded";
-                lbWebInterface.ForeColor = Color.Green;
+                lblWebInterface.Image = Icons.CircleGreen;
             }
             catch (Exception)
             {
-                lbWebInterface.Text = "Error";
-                lbWebInterface.ForeColor = Color.Red;
             }
             try
             {
                 LoadStratConfig();
-                lbStratcombos.Text = "Loaded";
-                lbStratcombos.ForeColor = Color.Green;
+                lblStratcombos.Image = Icons.CircleGreen;
             }
             catch (Exception)
             {
-                lbStratcombos.Text = "Error";
-                lbStratcombos.ForeColor = Color.Red;
             }
             try
             {
                 LoadImageHashs();
-                lbStratimages.Text = "Loaded";
-                lbStratimages.ForeColor = Color.Green;
+                lblStratimages.Image = Icons.CircleGreen;
             }
             catch (Exception)
             {
-                lbStratimages.Text = "Error";
-                lbStratimages.ForeColor = Color.Red;
             }
             try
             {
                 SaveStratConfig();
-                lbConfig.Text = "Loaded";
-                lbConfig.ForeColor = Color.Green;
+                lblConfig.Image = Icons.CircleGreen;
             }
             catch (Exception)
             {
-                lbConfig.Text = "Error";
-                lbConfig.ForeColor = Color.Red;
             }
             try
             {
                 LoadSDButtonImages();
-                lbSDinfo.Text = "Located";
-                lbSDinfo.ForeColor = Color.Green;
+                if (File.Exists(appConfig.streamDeckExePath))
+                {
+                    lblSDinfo.Image = Icons.CircleGreen;
+                }
+                else
+                {
+                    log("**Stream Deck application not found**");
+                    lblSDinfo.Image = Icons.CircleYellow;
+                }
+
             }
             catch (Exception)
             {
-                lbSDinfo.Text = "Error";
-                lbSDinfo.ForeColor = Color.Red;
             }
             try
             {
@@ -136,13 +139,18 @@ namespace HD2SDGK
                     httpServer.OnGet("/" + kitName).AddHandler(new Action<HttpListenerContext, Action>(KitAction));
                 }
                 httpServer.OnGet("/ResetSD").AddHandler(new Action<HttpListenerContext, Action>(ResetSDAction));
-                lbEvents.Text = "Listening";
-                lbEvents.ForeColor = Color.Green;
+                lblEvents.Image = Icons.CircleGreen;
             }
             catch (Exception)
             {
-                lbEvents.Text = "Error";
-                lbEvents.ForeColor = Color.Red;
+            }
+            try
+            {
+                openWebInterfaceToolStripMenuItem.Image = Icons.Browser;
+                openInstallFolderToolStripMenuItem.Image = Icons.Folder;
+            }
+            catch (Exception)
+            {
             }
             Task.Delay(500).ContinueWith((task) =>
             {
@@ -342,17 +350,18 @@ namespace HD2SDGK
                 }
                 if (!string.IsNullOrEmpty(redirUrl) && redirUrl != appConfig.version)
                 {
-                    lblNewVersion.Text = "Update Available";
+                    updateVersionStatus(CheckStatus.Update);
                 }
                 else
                 {
-                    lblNewVersion.Text = appConfig.version;
+                    updateVersionStatus(CheckStatus.Current);
+
                 }
                 log("Version check complete.");
             }
             catch (Exception)
             {
-                lblNewVersion.Text = "Check Failed";
+                updateVersionStatus(CheckStatus.Fail);
                 log("Version update check failed.");
             }
             //====================================================
@@ -367,11 +376,11 @@ namespace HD2SDGK
                         StratConfig_update = JsonConvert.DeserializeObject<StratCats>(json);
                         if (StratConfig_update.lastUpdated > StratConfig.lastUpdated)
                         {
-                            lbStratUpdateLink.Text = "Update Available";
+                            updateStratagemStatus(CheckStatus.Update);
                         }
                         else
                         {
-                            lbStratUpdateLink.Text = "Current";
+                            updateStratagemStatus(CheckStatus.Current);
                         }
                     }
                     log("Stratagem update check complete.");
@@ -379,7 +388,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratUpdateLink.Text = "Check Failed";
+                updateStratagemStatus(CheckStatus.Fail);
                 log("Stratagem update check failed.");
             }
         }
@@ -549,11 +558,11 @@ namespace HD2SDGK
             }
             return null;
         }
-        private void lbStratUpdateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void updateStratagems()
         {
             try
             {
-                if (StratConfig == null || lbStratUpdateLink.Text == "Update Available")
+                if (StratConfig == null || StratagemStatus == CheckStatus.Update)
                 {
                     if (StratConfig == null || StratConfig_update.lastUpdated > StratConfig.lastUpdated)
                     {
@@ -569,13 +578,13 @@ namespace HD2SDGK
                             StratConfig = StratConfig_update;
                             LoadImageHashs();
                             SaveStratConfig();
-                            lbStratUpdateLink.Text = "Current";
+                            updateStratagemStatus(CheckStatus.Current);
                             log("Stratagem update complete.");
                         }
                     }
                     else
                     {
-                        lbStratUpdateLink.Text = "Current";
+                        updateStratagemStatus(CheckStatus.Current);
                         DialogResult result = MessageBox.Show("Your Stratagem list is up-to-date.", "Stratagem Update"
                             , MessageBoxButtons.OK
                             , MessageBoxIcon.Information
@@ -591,7 +600,7 @@ namespace HD2SDGK
             }
             catch (Exception)
             {
-                lbStratUpdateLink.Text = "Check Failed";
+                updateStratagemStatus(CheckStatus.Fail);
                 log("Stratagem update check failed.");
             }
         }
@@ -618,7 +627,7 @@ namespace HD2SDGK
             });
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void openInstallFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(new ProcessStartInfo()
             {
@@ -628,15 +637,78 @@ namespace HD2SDGK
             });
         }
 
-        private void lblNewVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void openWebInterfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("http://localhost:" + appConfig.localHostPort.ToString()) { UseShellExecute = true });
+        }
+        private void updateVersionStatus(CheckStatus status)
+        {
+            VersionStatus = status;
+            downloadNewVersionToolStripMenuItem.Visible = false;
+            currentVersionToolStripMenuItem.Visible = false;
+            switch (status)
+            {
+                case CheckStatus.Update:
+                    formMenu.Items[1].Image = Icons.Update;
+                    downloadNewVersionToolStripMenuItem.Visible = true;
+                    break;
+                case CheckStatus.Current:
+                    formMenu.Items[1].Image = Icons.GreenCheck;
+                    currentVersionToolStripMenuItem.Visible = true;
+                    break;
+                case CheckStatus.Fail:
+                    formMenu.Items[1].Image = Icons.Warning;
+                    break;
+                default:
+                    break;
+            }
+            currentVersionToolStripMenuItem.Text = "Version " + appConfig.version;
+        }
+        private void updateStratagemStatus(CheckStatus status)
+        {
+            StratagemStatus = status;
+            downloadNewStratagemsToolStripMenuItem.Visible = false;
+            switch (status)
+            {
+                case CheckStatus.Update:
+                    formMenu.Items[2].Image = Icons.Update;
+                    downloadNewStratagemsToolStripMenuItem.Visible = true;
+                    break;
+                case CheckStatus.Current:
+                    formMenu.Items[2].Image = Icons.GreenCheck;
+                    break;
+                case CheckStatus.Fail:
+                    formMenu.Items[2].Image = Icons.Warning;
+                    break;
+                default:
+                    break;
+            }
+            lastUpdateToolStripMenuItem.Text = string.Format("Version {0}T{1}", StratConfig.lastUpdated.ToShortDateString(), StratConfig.lastUpdated.ToShortTimeString());
+        }
+
+        private void checkNewVersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateCheck();
+        }
+
+        private void downloadNewVersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://github.com/jredenius/HD2SDGK/releases/latest") { UseShellExecute = true });
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void openGitHubProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(new ProcessStartInfo("http://localhost:" + appConfig.localHostPort.ToString()) { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://github.com/jredenius/HD2SDGK/") { UseShellExecute = true });
+        }
 
+        private void downloadNewStratagemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updateStratagems();
+        }
+
+        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateCheck();
         }
     }
 }

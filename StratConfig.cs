@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace HD2SDGK
 {
+    public enum CheckStatus
+    {
+        Update,
+        Current,
+        Fail,
+        None
+    }
     public class AppConfig
     {
         public string version;
