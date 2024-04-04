@@ -30,6 +30,7 @@ Use the included Stream Deck Mini profile or modify your own.
 2) If you open the Steam Overlay when you are readying-up for the mission, you can see your selected strats through the background.
      - However, you can use the web interface to update the Stream Deck at any time, including in-mission.
 3) Use additional Kit buttons when there are effects that give you free Stratagems.
+4) You can move Kit buttons. It does not matter where they are located in your Stream Deck profile.
 
 
 
@@ -42,17 +43,7 @@ Use the included Stream Deck Mini profile or modify your own.
         - Change profileName to match your profile.
         - profileButtons list must match your Stream Deck button names (e.g. Kit1, Kit2, etc.).
 3) In HD2SDGK.config, selectorRows/Colums affects the webpage layout.
-4) Interface Version display:
-      - Version number - Your app is up to date with the latest version.
-      - Update Available - Click the link to view and download the latest app release.
-      - Failed - Checking for the latest version failed.
-5) Interface Stratagem List display:
-      - Current - You have the latest copy of the stratagem hotkey config.
-      - Update Available - Click the link to download the latest version of the stratagem hotkey config and new icons.
-      - Failed - Checking for the latest list failed. Click to try again.
-6) Interface Install Folder link - Click to open the installation folder in File Explorer.
-7) Interface Web Interface link - Click to open the web interface in your default browser.
-
+4) The menu shows you if you have the latest versions of the app and Stratagem list with a green checkmark.
 
 # Stratagem Hotkeys
 StratConfig.json contains the hotkeys. I'll try to keep this up-to-date as new Stratagem Hotkeys are release. The app automatically checks for updates. 
