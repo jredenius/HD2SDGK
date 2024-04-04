@@ -55,7 +55,7 @@ If you want to modify this yourself:
 4) Set the hotkeys using the Home + Direction keywords.
 
 # Screenshots
-![image](https://github.com/jredenius/HD2SDGK/assets/22848915/c491eadc-46d5-44d7-84e4-ce12528fe525)
+![image](https://github.com/jredenius/HD2SDGK/assets/22848915/04692a91-f8ef-4974-94c0-0d15d57b85a5)
 
 ![image](https://github.com/jredenius/HD2SDGK/assets/22848915/54737bef-36a7-4516-93de-4c9f9e168b56)
 
