@@ -74,6 +74,11 @@
                     "name": "Heavy Machine Gun",
                     "image": "",
                     "code": [ "home", "down", "left", "up", "down", "down" ]
+                },
+                {
+                    "name": "Airburst Rocket Launcher",
+                    "image": "",
+                    "code": [ "home", "down", "up", "up", "left", "right" ]
                 }
             ]
         },
