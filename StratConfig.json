@@ -278,6 +278,11 @@
                     "name": "HMG Emplacement",
                     "image": "",
                     "code": [ "home", "down", "up", "left", "right", "right", "left" ]
+                },
+                {
+                    "name": "Anti-Tank Mines",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "up" ]
                 }
             ]
         },
