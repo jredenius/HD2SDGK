@@ -369,6 +369,7 @@ namespace HD2SDGK
             {
                 using (WebClient wc = new WebClient())
                 {
+                    wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
                     Random random = new Random();
                     string json = wc.DownloadString(appConfig.stratConfigUpdateURL + "?random=" + random.Next().ToString());
                     if (json != null)
