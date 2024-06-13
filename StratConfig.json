@@ -294,6 +294,11 @@
                     "name": "Patriot Exosuit",
                     "image": "",
                     "code": [ "home", "left", "down", "right", "up", "left", "down", "down" ]
+                },
+                {
+                    "name": "Emancipator Exosuit",
+                    "image": "",
+                    "code": [ "home", "left", "down", "right", "up", "left", "down", "up" ]
                 }
             ]
         },
@@ -365,6 +370,16 @@
                     "name": "Super Earth Flag",
                     "image": "",
                     "code": [ "home", "down", "up", "down", "up" ]
+                },
+                {
+                    "name": "Tectonic Drill",
+                    "image": "",
+                    "code": [ "home", "up", "down", "up", "down", "up", "down" ]
+                },
+                {
+                    "name": "Dark Fluid Vessel",
+                    "image": "",
+                    "code": [ "home", "up", "left", "right", "down", "up", "up" ]
                 }
             ]
         }
