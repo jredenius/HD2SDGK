@@ -1,5 +1,5 @@
 ﻿{
-    "lastUpdated": "6/13/24 1:42am",
+    "lastUpdated": "7/10/24 7:00pm",
     "categories": [
         {
             "name": "Support Weapons",
@@ -79,6 +79,11 @@
                     "name": "Airburst Rocket Launcher",
                     "image": "",
                     "code": [ "home", "down", "up", "up", "left", "right" ]
+                },
+                {
+                    "name": "Commando",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "down", "right" ]
                 }
             ]
         },
