@@ -1,5 +1,5 @@
 ﻿{
-    "lastUpdated": "7/10/24 7:00pm",
+    "lastUpdated": "9/17/24 8:00pm",
     "categories": [
         {
             "name": "Support Weapons",
@@ -181,6 +181,11 @@
                     "name": "Orbital Smoke Strike",
                     "image": "",
                     "code": [ "home", "right", "right", "down", "up" ]
+                },
+                {
+                    "name": "Orbital Napalm Barrage",
+                    "image": "",
+                    "code": [ "home", "right", "right", "down", "left", "right", "up" ]
                 }
             ]
         },
