@@ -1,5 +1,5 @@
 ﻿{
-    "lastUpdated": "9/17/24 8:00pm",
+    "lastUpdated": "9/23/24 8:00pm",
     "categories": [
         {
             "name": "Support Weapons",
@@ -84,6 +84,11 @@
                     "name": "Commando",
                     "image": "",
                     "code": [ "home", "down", "left", "up", "down", "right" ]
+                },
+                {
+                    "name": "Sterilizer",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "down", "left" ]
                 }
             ]
         },
@@ -120,6 +125,11 @@
                     "name": "Ballistic Shield Backpack",
                     "image": "",
                     "code": [ "home", "down", "left", "down", "down", "up", "left" ]
+                },
+                {
+                    "name": "Guard Dog Breath",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "up", "right", "up" ]
                 }
             ]
         },
