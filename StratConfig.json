@@ -1,5 +1,5 @@
 ﻿{
-    "lastUpdated": "9/23/24 8:00pm",
+    "lastUpdated": "6/13/25 11:00pm",
     "categories": [
         {
             "name": "Support Weapons",
@@ -89,6 +89,16 @@
                     "name": "Sterilizer",
                     "image": "",
                     "code": [ "home", "down", "left", "up", "down", "left" ]
+                },
+                {
+                    "name": "W.A.S.P.",
+                    "image": "",
+                    "code": [ "home", "down", "down", "up", "down", "right" ]
+                },
+                {
+                    "name": "De-Escalator",
+                    "image": "",
+                    "code": [ "home", "left", "right", "up", "left", "right" ]
                 }
             ]
         },
@@ -107,9 +117,14 @@
                     "code": [ "home", "down", "up", "left", "right", "left", "right" ]
                 },
                 {
-                    "name": "Jump Pack",
+                    "name": "Ballistic Shield Backpack",
                     "image": "",
-                    "code": [ "home", "down", "up", "up", "down", "up" ]
+                    "code": [ "home", "down", "left", "down", "down", "up", "left" ]
+                },
+                {
+                    "name": "Directional Shield",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "right", "up", "up" ]
                 },
                 {
                     "name": "Guard Dog",
@@ -122,14 +137,34 @@
                     "code": [ "home", "down", "up", "left", "up", "right", "right" ]
                 },
                 {
-                    "name": "Ballistic Shield Backpack",
-                    "image": "",
-                    "code": [ "home", "down", "left", "down", "down", "up", "left" ]
-                },
-                {
                     "name": "Guard Dog Breath",
                     "image": "",
                     "code": [ "home", "down", "up", "left", "up", "right", "up" ]
+                },
+                {
+                    "name": "Guard Dog K-9",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "up", "right", "left" ]
+                },
+                {
+                    "name": "Portable Hellbomb",
+                    "image": "",
+                    "code": [ "home", "down", "right", "up", "up", "up" ]
+                },
+                {
+                    "name": "Jump Pack",
+                    "image": "",
+                    "code": [ "home", "down", "up", "up", "down", "up" ]
+                },
+                {
+                    "name": "Hover Pack",
+                    "image": "",
+                    "code": [ "home", "down", "up", "up", "down", "left", "right" ]
+                },
+                {
+                    "name": "One True Flag",
+                    "image": "",
+                    "code": [ "home", "down", "left", "right", "right", "up" ]
                 }
             ]
         },
@@ -275,6 +310,11 @@
                     "code": [ "home", "down", "up", "right", "right", "left" ]
                 },
                 {
+                    "name": "Flame Sentry",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "down", "up", "up" ]
+                },
+                {
                     "name": "Anti-Personnel Minefield",
                     "image": "",
                     "code": [ "home", "down", "left", "up", "right" ]
@@ -285,14 +325,19 @@
                     "code": [ "home", "down", "left", "left", "down" ]
                 },
                 {
+                    "name": "Anti-Tank Mines",
+                    "image": "",
+                    "code": [ "home", "down", "left", "up", "up" ]
+                },
+                {
+                    "name": "Gas Mines",
+                    "image": "",
+                    "code": [ "home", "down", "left", "left", "right" ]
+                },
+                {
                     "name": "Shield Generator Relay",
                     "image": "",
                     "code": [ "home", "down", "down", "left", "right", "left", "right" ]
-                },
-                {
-                    "name": "Tesla Tower",
-                    "image": "",
-                    "code": [ "home", "down", "up", "right", "up", "left", "right" ]
                 },
                 {
                     "name": "HMG Emplacement",
@@ -300,9 +345,19 @@
                     "code": [ "home", "down", "up", "left", "right", "right", "left" ]
                 },
                 {
-                    "name": "Anti-Tank Mines",
+                    "name": "Grenadier Battlement",
                     "image": "",
-                    "code": [ "home", "down", "left", "up", "up" ]
+                    "code": [ "home", "down", "right", "down", "left", "right" ]
+                },
+                {
+                    "name": "Anti-Tank Emplacement",
+                    "image": "",
+                    "code": [ "home", "down", "up", "left", "right", "right", "right" ]
+                },
+                {
+                    "name": "Tesla Tower",
+                    "image": "",
+                    "code": [ "home", "down", "up", "right", "up", "left", "right" ]
                 }
             ]
         },
@@ -310,6 +365,11 @@
             "name": "Vehicles",
             "image": "",
             "strats": [
+                {
+                    "name": "Fast Recon Vehicle",
+                    "image": "",
+                    "code": [ "home", "left", "down", "right", "down", "right", "down", "up" ]
+                },
                 {
                     "name": "Patriot Exosuit",
                     "image": "",
@@ -357,6 +417,11 @@
                     "code": [ "home", "right", "up", "up", "down" ]
                 },
                 {
+                    "name": "Hive Breaker Drill",
+                    "image": "",
+                    "code": [ "home", "left", "up", "down", "right", "down", "down" ]
+                },
+                {
                     "name": "SOS Beacon",
                     "image": "",
                     "code": [ "home", "up", "down", "right", "up" ]
@@ -387,11 +452,6 @@
                     "code": [ "home", "right", "right", "left", "left" ]
                 },
                 {
-                    "name": "Super Earth Flag",
-                    "image": "",
-                    "code": [ "home", "down", "up", "down", "up" ]
-                },
-                {
                     "name": "Tectonic Drill",
                     "image": "",
                     "code": [ "home", "up", "down", "up", "down", "up", "down" ]
@@ -400,6 +460,11 @@
                     "name": "Dark Fluid Vessel",
                     "image": "",
                     "code": [ "home", "up", "left", "right", "down", "up", "up" ]
+                },
+                {
+                    "name": "Super Earth Flag",
+                    "image": "",
+                    "code": [ "home", "down", "up", "down", "up" ]
                 }
             ]
         }
